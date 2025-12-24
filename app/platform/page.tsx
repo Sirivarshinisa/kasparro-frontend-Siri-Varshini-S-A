@@ -7,100 +7,105 @@ export default function PlatformPage() {
     <PublicLayout>
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-4xl">
-          <h1 className="text-4xl font-bold mb-4">Platform Overview</h1>
+          <h1 className="text-4xl font-bold mb-4">Product Mechanics</h1>
           <p className="text-xl text-muted-foreground mb-12">
-            A product-first approach to AI-SEO. Understand how Kasparro bridges 
-            traditional SEO thinking with the realities of AI-first search.
+            How Kasparro processes brand data and generates AI-SEO intelligence.
           </p>
           
           {/* Audit Pipeline */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-6">Audit Pipeline Flow</h2>
+            <h2 className="text-2xl font-bold mb-6">Audit Pipeline</h2>
             <Card className="p-8">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="flex-1">
                   <Badge className="mb-3">Input</Badge>
-                  <h3 className="font-semibold mb-2">Data Collection</h3>
+                  <h3 className="font-semibold mb-2">InputAssembler</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Brand website content</li>
-                    <li>• Competitor analysis</li>
-                    <li>• AI search patterns</li>
-                    <li>• Industry context</li>
+                    <li>• Brand content ingestion</li>
+                    <li>• Competitor data collection</li>
+                    <li>• AI query patterns</li>
+                    <li>• Structured data extraction</li>
                   </ul>
                 </div>
                 <div className="text-4xl text-muted-foreground">→</div>
                 <div className="flex-1">
-                  <Badge className="mb-3">Processing</Badge>
+                  <Badge className="mb-3">Context</Badge>
+                  <h3 className="font-semibold mb-2">ContextPack</h3>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Normalize content</li>
+                    <li>• Build entity graph</li>
+                    <li>• Extract signals</li>
+                    <li>• Prepare for analysis</li>
+                  </ul>
+                </div>
+                <div className="text-4xl text-muted-foreground">→</div>
+                <div className="flex-1">
+                  <Badge className="mb-3">Modules</Badge>
                   <h3 className="font-semibold mb-2">7 Audit Modules</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Content Quality</li>
-                    <li>• Entity Recognition</li>
-                    <li>• E-E-A-T Signals</li>
+                    <li>• Brand Visibility</li>
+                    <li>• Trust & Authority</li>
+                    <li>• Content Representation</li>
                     <li>• +4 more dimensions</li>
                   </ul>
                 </div>
                 <div className="text-4xl text-muted-foreground">→</div>
                 <div className="flex-1">
                   <Badge className="mb-3">Output</Badge>
-                  <h3 className="font-semibold mb-2">Actionable Insights</h3>
+                  <h3 className="font-semibold mb-2">Results</h3>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• Visibility scores</li>
-                    <li>• Priority issues</li>
+                    <li>• Scores per module</li>
+                    <li>• Issues & flags</li>
                     <li>• Recommendations</li>
-                    <li>• Impact estimates</li>
+                    <li>• Priority actions</li>
                   </ul>
                 </div>
               </div>
             </Card>
           </div>
 
-          {/* What Data We Consume */}
+          {/* Input: What Data We Consume */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-6">What Data Kasparro Consumes</h2>
+            <h2 className="text-2xl font-bold mb-6">Input: Data Sources</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="p-6">
                 <h3 className="font-semibold mb-3">Brand Content</h3>
                 <p className="text-sm text-muted-foreground">
-                  Website pages, blog posts, documentation, knowledge base articles, 
-                  and any public-facing content that defines your brand voice and expertise.
+                  Public web content, documentation, metadata, and structured data.
                 </p>
               </Card>
               <Card className="p-6">
-                <h3 className="font-semibold mb-3">Structured Data</h3>
+                <h3 className="font-semibold mb-3">Competitive Data</h3>
                 <p className="text-sm text-muted-foreground">
-                  Schema markup, metadata, author profiles, entity relationships, 
-                  and machine-readable signals AI models use for understanding.
+                  How competitors appear in AI-generated responses and their positioning.
                 </p>
               </Card>
               <Card className="p-6">
-                <h3 className="font-semibold mb-3">Competitive Landscape</h3>
+                <h3 className="font-semibold mb-3">AI Query Patterns</h3>
                 <p className="text-sm text-muted-foreground">
-                  How competitors appear in AI responses, their content strategies, 
-                  and positioning within AI-generated recommendations.
+                  Real queries from ChatGPT, Perplexity, and other AI systems.
                 </p>
               </Card>
               <Card className="p-6">
-                <h3 className="font-semibold mb-3">AI Search Patterns</h3>
+                <h3 className="font-semibold mb-3">Entity Relationships</h3>
                 <p className="text-sm text-muted-foreground">
-                  Real queries from ChatGPT, Perplexity, Claude, and other AI systems 
-                  to understand how users discover brands in AI-first contexts.
+                  Connections between brand, products, people, and industry concepts.
                 </p>
               </Card>
             </div>
           </div>
 
-          {/* What Outputs Brands Receive */}
+          {/* Output: What Brands Receive */}
           <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-6">What Outputs Brands Receive</h2>
+            <h2 className="text-2xl font-bold mb-6">Output: Deliverables</h2>
             <div className="space-y-4">
               <Card className="p-6">
                 <div className="flex items-start gap-4">
                   <div className="text-3xl font-bold text-primary">01</div>
                   <div>
-                    <h3 className="font-semibold mb-2">AI Visibility Dashboard</h3>
+                    <h3 className="font-semibold mb-2">Module Scores</h3>
                     <p className="text-sm text-muted-foreground">
-                      Real-time scores showing how often and accurately your brand appears 
-                      in AI-generated responses across major platforms.
+                      Quantitative scores for each of 7 audit modules showing performance across dimensions.
                     </p>
                   </div>
                 </div>
@@ -109,10 +114,9 @@ export default function PlatformPage() {
                 <div className="flex items-start gap-4">
                   <div className="text-3xl font-bold text-primary">02</div>
                   <div>
-                    <h3 className="font-semibold mb-2">Prioritized Issue Reports</h3>
+                    <h3 className="font-semibold mb-2">Issue Detection</h3>
                     <p className="text-sm text-muted-foreground">
-                      Specific problems affecting AI visibility, ranked by severity and 
-                      impact on your brand's presence in AI search results.
+                      Specific problems ranked by severity with descriptions of impact on AI visibility.
                     </p>
                   </div>
                 </div>
@@ -121,10 +125,9 @@ export default function PlatformPage() {
                 <div className="flex items-start gap-4">
                   <div className="text-3xl font-bold text-primary">03</div>
                   <div>
-                    <h3 className="font-semibold mb-2">Actionable Recommendations</h3>
+                    <h3 className="font-semibold mb-2">Recommendations</h3>
                     <p className="text-sm text-muted-foreground">
-                      Step-by-step guidance on improving content, structured data, and 
-                      brand signals with expected impact and effort estimates.
+                      Actionable steps to improve scores with effort and impact estimates.
                     </p>
                   </div>
                 </div>
@@ -133,10 +136,9 @@ export default function PlatformPage() {
                 <div className="flex items-start gap-4">
                   <div className="text-3xl font-bold text-primary">04</div>
                   <div>
-                    <h3 className="font-semibold mb-2">Competitive Benchmarks</h3>
+                    <h3 className="font-semibold mb-2">Trend Analysis</h3>
                     <p className="text-sm text-muted-foreground">
-                      See how your AI visibility compares to competitors and identify 
-                      opportunities to capture market share in AI-generated responses.
+                      Historical changes in visibility and trust metrics over time.
                     </p>
                   </div>
                 </div>
@@ -144,33 +146,14 @@ export default function PlatformPage() {
             </div>
           </div>
 
-          {/* How Kasparro Differs */}
+          {/* Differentiator */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">How Kasparro Differs from Traditional SEO Tools</h2>
+            <h2 className="text-2xl font-bold mb-6">Key Differentiator</h2>
             <Card className="p-8 bg-primary/5 border-primary/20">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-semibold mb-2">Beyond Search Rankings</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Traditional tools optimize for Google's algorithm. Kasparro optimizes for 
-                    how AI models understand, trust, and cite your brand.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Native AI Analysis</h3>
-                  <p className="text-sm text-muted-foreground">
-                    We don't retrofit old SEO metrics. Our platform is built from the ground up 
-                    to understand AI reasoning patterns, entity recognition, and trust signals.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Future-Proof Strategy</h3>
-                  <p className="text-sm text-muted-foreground">
-                    As search shifts from Google to ChatGPT, Perplexity, and other AI interfaces, 
-                    Kasparro ensures your brand stays visible where users actually look for answers.
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm text-muted-foreground">
+                Kasparro is built for AI-first search, not retrofitted from traditional SEO tools. 
+                The platform analyzes how AI models understand, trust, and cite brands — not just search engine rankings.
+              </p>
             </Card>
           </div>
         </div>

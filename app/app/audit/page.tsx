@@ -5,23 +5,54 @@ import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { BrandSelector } from '@/components/features/dashboard/DashboardComponents';
 import { ModuleSidebar, ModuleDetailPanel } from '@/components/features/audit/AuditComponents';
 import { useAppStore } from '@/lib/store';
-import { AuditModule } from '@/lib/types';
+
+interface AuditModuleData {
+  id: string;
+  name: string;
+  score: number;
+  scoreLabel: string;
+  summary: string;
+  insights: string[];
+  issues: Array<{
+    severity: string;
+    title: string;
+    description: string;
+  }>;
+  recommendations: string[];
+}
+
+const moduleIds = [
+  'brand-visibility',
+  'trust-authority',
+  'content-representation',
+  'keyword-coverage',
+  'sentiment-positioning',
+  'source-diversity',
+  'competitive-context'
+];
 
 export default function AuditPage() {
   const { selectedBrand, selectedModuleId, setSelectedModuleId } = useAppStore();
-  const [modules, setModules] = useState<AuditModule[]>([]);
+  const [modules, setModules] = useState<AuditModuleData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (selectedBrand) {
-      fetch('/data/audit-modules.json')
-        .then((res) => res.json())
-        .then((data) => {
-          const brandModules = data[selectedBrand.id] || [];
-          setModules(brandModules);
-          if (brandModules.length > 0 && !selectedModuleId) {
-            setSelectedModuleId(brandModules[0].id);
-          }
-        });
+      setLoading(true);
+      Promise.all(
+        moduleIds.map(id => 
+          fetch(`/data/audit-modules/${id}.json`)
+            .then(res => res.json())
+            .catch(() => null)
+        )
+      ).then(results => {
+        const validModules = results.filter(Boolean) as AuditModuleData[];
+        setModules(validModules);
+        if (validModules.length > 0 && !selectedModuleId) {
+          setSelectedModuleId(validModules[0].id);
+        }
+        setLoading(false);
+      });
     }
   }, [selectedBrand, selectedModuleId, setSelectedModuleId]);
 
@@ -38,7 +69,15 @@ export default function AuditPage() {
           <BrandSelector />
         </div>
 
-        {selectedBrand && modules.length > 0 ? (
+        {!selectedBrand ? (
+          <div className="text-center py-12 text-muted-foreground">
+            Select a brand to view audit
+          </div>
+        ) : loading ? (
+          <div className="text-center py-12 text-muted-foreground">
+            Loading audit data...
+          </div>
+        ) : modules.length > 0 ? (
           <div className="flex -mx-6 -mb-6" style={{ height: 'calc(100vh - 200px)' }}>
             <ModuleSidebar 
               modules={modules} 
@@ -51,7 +90,7 @@ export default function AuditPage() {
           </div>
         ) : (
           <div className="text-center py-12 text-muted-foreground">
-            {!selectedBrand ? 'Select a brand to view audit' : 'Loading audit data...'}
+            No audit data available
           </div>
         )}
       </div>

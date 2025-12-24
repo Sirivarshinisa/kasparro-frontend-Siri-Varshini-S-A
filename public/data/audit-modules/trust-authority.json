@@ -1,0 +1,31 @@
+{
+  "id": "trust-authority",
+  "name": "Trust & Authority (EEAT)",
+  "score": 85,
+  "scoreLabel": "Very Good",
+  "summary": "Strong expertise and authority signals detected across content sources.",
+  "insights": [
+    "High author credibility scores on published content",
+    "Citations from authoritative industry sources",
+    "Strong technical depth in documentation",
+    "Consistent messaging across platforms"
+  ],
+  "issues": [
+    {
+      "severity": "low",
+      "title": "Limited third-party validation",
+      "description": "Few independent reviews or case studies cited by AI models"
+    },
+    {
+      "severity": "low",
+      "title": "Missing experience indicators",
+      "description": "Limited data on real-world implementation examples"
+    }
+  ],
+  "recommendations": [
+    "Encourage customer reviews and testimonials",
+    "Publish detailed case studies with measurable outcomes",
+    "Increase presence in industry publications",
+    "Add author credentials prominently to content"
+  ]
+}

@@ -53,23 +53,27 @@ export function BrandSelector() {
 
 export function SnapshotCard({ 
   title, 
-  score, 
+  value,
+  change,
   description 
 }: { 
   title: string; 
-  score: { value: number; maxValue: number; trend?: string; changePercentage?: number }; 
+  value: number;
+  change: string;
   description: string;
 }) {
-  const percentage = (score.value / score.maxValue) * 100;
+  const percentage = value;
+  const isPositive = change.startsWith('+');
+  const isNegative = change.startsWith('-');
   
   const TrendIcon = 
-    score.trend === 'up' ? TrendingUp :
-    score.trend === 'down' ? TrendingDown :
+    isPositive ? TrendingUp :
+    isNegative ? TrendingDown :
     Minus;
   
   const trendColor = 
-    score.trend === 'up' ? 'text-green-600' :
-    score.trend === 'down' ? 'text-red-600' :
+    isPositive ? 'text-green-600' :
+    isNegative ? 'text-red-600' :
     'text-muted-foreground';
 
   return (
@@ -80,8 +84,8 @@ export function SnapshotCard({
       </CardHeader>
       <CardContent>
         <div className="flex items-baseline gap-2">
-          <div className="text-3xl font-bold">{score.value}</div>
-          <div className="text-sm text-muted-foreground">/ {score.maxValue}</div>
+          <div className="text-3xl font-bold">{value}</div>
+          <div className="text-sm text-muted-foreground">/ 100</div>
         </div>
         <div className="flex items-center gap-2 mt-2">
           <div className="flex-1 bg-muted rounded-full h-2">
@@ -90,12 +94,10 @@ export function SnapshotCard({
               style={{ width: `${percentage}%` }}
             />
           </div>
-          {score.trend && score.changePercentage !== undefined && (
-            <div className={`flex items-center gap-1 text-xs font-medium ${trendColor}`}>
-              <TrendIcon className="h-3 w-3" />
-              {Math.abs(score.changePercentage)}%
-            </div>
-          )}
+          <div className={`flex items-center gap-1 text-xs font-medium ${trendColor}`}>
+            <TrendIcon className="h-3 w-3" />
+            {change}
+          </div>
         </div>
       </CardContent>
     </Card>
@@ -103,7 +105,7 @@ export function SnapshotCard({
 }
 
 export function DashboardMetricsDisplay({ brandId }: { brandId: string }) {
-  const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
+  const [metrics, setMetrics] = useState<any>(null);
 
   useEffect(() => {
     fetch('/data/dashboard-metrics.json')
@@ -121,17 +123,20 @@ export function DashboardMetricsDisplay({ brandId }: { brandId: string }) {
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       <SnapshotCard
         title="AI Visibility Score"
-        score={metrics.aiVisibilityScore}
+        value={metrics.aiVisibilityScore.value}
+        change={`${metrics.aiVisibilityScore.changePercentage > 0 ? '+' : ''}${metrics.aiVisibilityScore.changePercentage}%`}
         description="How often your brand appears in AI responses"
       />
       <SnapshotCard
         title="Trust / E-E-A-T Score"
-        score={metrics.trustScore}
+        value={metrics.trustScore.value}
+        change={`${metrics.trustScore.changePercentage > 0 ? '+' : ''}${metrics.trustScore.changePercentage}%`}
         description="Experience, Expertise, Authority, Trust signals"
       />
       <SnapshotCard
         title="Non-Branded Coverage"
-        score={metrics.keywordCoverage}
+        value={metrics.keywordCoverage.value}
+        change={`${metrics.keywordCoverage.changePercentage > 0 ? '+' : ''}${metrics.keywordCoverage.changePercentage}%`}
         description="Visibility in intent-driven, non-branded queries"
       />
       <Card>

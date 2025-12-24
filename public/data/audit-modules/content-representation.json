@@ -1,0 +1,36 @@
+{
+  "id": "content-representation",
+  "name": "Content Representation",
+  "score": 72,
+  "scoreLabel": "Good",
+  "summary": "Your content is indexed but not always surfaced in optimal contexts.",
+  "insights": [
+    "Strong representation in technical queries",
+    "Good coverage of core product features",
+    "Documentation frequently cited for implementation details",
+    "Blog content has lower citation rate than docs"
+  ],
+  "issues": [
+    {
+      "severity": "high",
+      "title": "Content gaps in emerging topics",
+      "description": "Missing coverage of 12 trending keywords in your industry"
+    },
+    {
+      "severity": "medium",
+      "title": "Outdated content being cited",
+      "description": "AI models reference deprecated documentation versions"
+    },
+    {
+      "severity": "medium",
+      "title": "Thin content on comparison pages",
+      "description": "Competitor comparison content lacks depth and specificity"
+    }
+  ],
+  "recommendations": [
+    "Create comprehensive guides for emerging topics",
+    "Update or archive outdated documentation",
+    "Expand comparison content with detailed feature matrices",
+    "Add structured data markup to key pages"
+  ]
+}

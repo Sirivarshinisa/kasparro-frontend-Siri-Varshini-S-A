@@ -9,7 +9,9 @@ export default function ArchitecturePage() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold">System Architecture</h1>
-          <p className="text-muted-foreground">Kasparro's AI-SEO pipeline architecture</p>
+          <p className="text-muted-foreground">
+            Data flow through Kasparro's 4-layer pipeline: InputAssembler → ContextPack → Audit Modules → Output Surfaces
+          </p>
         </div>
 
         {/* Architecture Flow */}
@@ -112,13 +114,13 @@ export default function ArchitecturePage() {
             <CardContent>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {[
-                  { name: 'Content Quality', focus: 'Relevance & alignment with AI patterns' },
-                  { name: 'Entity & Knowledge Graph', focus: 'Brand entity recognition' },
-                  { name: 'E-E-A-T Signals', focus: 'Trust & authority indicators' },
-                  { name: 'Semantic Search', focus: 'Natural language optimization' },
-                  { name: 'Citation Quality', focus: 'Source trustworthiness' },
-                  { name: 'Non-Branded Visibility', focus: 'Intent-driven query appearance' },
-                  { name: 'Competitive Position', focus: 'Benchmarking against rivals' },
+                  { name: 'Brand Visibility', focus: 'How often brand appears in AI responses' },
+                  { name: 'Trust & Authority', focus: 'E-E-A-T signals and credibility' },
+                  { name: 'Content Representation', focus: 'Accuracy of brand content in AI outputs' },
+                  { name: 'Keyword Coverage', focus: 'Non-branded query visibility' },
+                  { name: 'Sentiment & Positioning', focus: 'How brand is positioned by AI' },
+                  { name: 'Source Diversity', focus: 'Breadth of citations and mentions' },
+                  { name: 'Competitive Context', focus: 'Relative positioning vs. competitors' },
                 ].map((module, i) => (
                   <div key={i} className="bg-muted p-4 rounded border-l-4 border-primary">
                     <h4 className="font-semibold text-sm mb-1">{module.name}</h4>

@@ -1,0 +1,36 @@
+{
+  "id": "keyword-coverage",
+  "name": "Non-Branded Keyword Coverage",
+  "score": 64,
+  "scoreLabel": "Fair",
+  "summary": "Limited presence in generic industry queries. Strong brand dependency detected.",
+  "insights": [
+    "92% mention rate for branded queries",
+    "Only 34% mention rate for non-branded industry queries",
+    "Good coverage of technical implementation keywords",
+    "Weak presence in problem-solution queries"
+  ],
+  "issues": [
+    {
+      "severity": "high",
+      "title": "Over-reliance on branded traffic",
+      "description": "Users must already know your brand to discover you via AI"
+    },
+    {
+      "severity": "high",
+      "title": "Missing from buyer journey queries",
+      "description": "Not surfaced in early-stage research queries"
+    },
+    {
+      "severity": "medium",
+      "title": "Limited category association",
+      "description": "AI models don't strongly associate your brand with category terms"
+    }
+  ],
+  "recommendations": [
+    "Create problem-focused content (not product-focused)",
+    "Build comprehensive category and comparison content",
+    "Optimize for 'how to' and 'what is' query patterns",
+    "Increase topical authority through content depth"
+  ]
+}

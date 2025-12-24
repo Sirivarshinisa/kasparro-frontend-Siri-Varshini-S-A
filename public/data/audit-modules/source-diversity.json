@@ -1,0 +1,36 @@
+{
+  "id": "source-diversity",
+  "name": "Source Diversity & Reach",
+  "score": 69,
+  "scoreLabel": "Fair",
+  "summary": "Moderate source diversity. Opportunities to expand content footprint.",
+  "insights": [
+    "Content cited from 23 unique sources",
+    "Heavy reliance on owned media (67% of citations)",
+    "Limited presence in industry publications",
+    "Good GitHub and technical community presence"
+  ],
+  "issues": [
+    {
+      "severity": "medium",
+      "title": "Low third-party content volume",
+      "description": "Only 33% of citations come from external sources"
+    },
+    {
+      "severity": "medium",
+      "title": "Missing from major industry platforms",
+      "description": "No presence on 5 major industry news sites"
+    },
+    {
+      "severity": "low",
+      "title": "Limited social proof signals",
+      "description": "Few community discussions or Q&A content indexed"
+    }
+  ],
+  "recommendations": [
+    "Guest post on industry-leading publications",
+    "Engage in technical communities and forums",
+    "Encourage user-generated content and reviews",
+    "Build relationships with industry analysts"
+  ]
+}

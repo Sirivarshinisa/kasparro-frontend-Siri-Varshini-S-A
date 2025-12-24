@@ -1,0 +1,31 @@
+{
+  "id": "brand-visibility",
+  "name": "Brand Visibility & Recognition",
+  "score": 78,
+  "scoreLabel": "Good",
+  "summary": "Your brand appears in 78% of relevant AI-generated responses across tested queries.",
+  "insights": [
+    "Strong presence in product comparison queries",
+    "Consistent citation in industry-related searches",
+    "Higher visibility in ChatGPT compared to Perplexity",
+    "Competitor mentions often appear alongside your brand"
+  ],
+  "issues": [
+    {
+      "severity": "medium",
+      "title": "Weak presence in 'best practices' queries",
+      "description": "Only 34% mention rate when users ask for implementation guides"
+    },
+    {
+      "severity": "low",
+      "title": "Inconsistent brand name formatting",
+      "description": "AI models use 3 different variations of your brand name"
+    }
+  ],
+  "recommendations": [
+    "Publish comprehensive how-to guides and best practices content",
+    "Standardize brand name usage across all public content",
+    "Increase depth of technical documentation",
+    "Build case studies for common use cases"
+  ]
+}

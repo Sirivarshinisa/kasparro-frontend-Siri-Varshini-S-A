@@ -1,11 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { useAppStore } from '@/lib/store';
-import { AuditModule } from '@/lib/types';
 import { 
   FileText, 
   Network, 
@@ -20,14 +17,29 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+interface AuditModuleData {
+  id: string;
+  name: string;
+  score: number;
+  scoreLabel: string;
+  summary: string;
+  insights: string[];
+  issues: Array<{
+    severity: string;
+    title: string;
+    description: string;
+  }>;
+  recommendations: string[];
+}
+
 const iconMap: Record<string, typeof FileText> = {
-  FileText,
-  Network,
-  Award,
-  Search,
-  Link,
-  TrendingUp,
-  Target,
+  'brand-visibility': Target,
+  'trust-authority': Award,
+  'content-representation': FileText,
+  'keyword-coverage': Search,
+  'sentiment-positioning': TrendingUp,
+  'source-diversity': Network,
+  'competitive-context': Link,
 };
 
 export function ModuleSidebar({ 
@@ -35,7 +47,7 @@ export function ModuleSidebar({
   selectedModuleId, 
   onSelectModule 
 }: { 
-  modules: AuditModule[]; 
+  modules: AuditModuleData[]; 
   selectedModuleId: string | null;
   onSelectModule: (id: string) => void;
 }) {
@@ -43,7 +55,7 @@ export function ModuleSidebar({
     <div className="w-80 border-r bg-muted/20 p-4 space-y-2">
       <h2 className="font-semibold mb-4 px-3">Audit Modules</h2>
       {modules.map((module) => {
-        const Icon = iconMap[module.icon] || FileText;
+        const Icon = iconMap[module.id] || FileText;
         const isSelected = module.id === selectedModuleId;
         
         return (
@@ -65,7 +77,7 @@ export function ModuleSidebar({
                   'text-xs mt-1',
                   isSelected ? 'text-primary-foreground/80' : 'text-muted-foreground'
                 )}>
-                  Score: {module.score.value}/{module.score.maxValue}
+                  Score: {module.score}/100 • {module.scoreLabel}
                 </div>
               </div>
             </div>
@@ -76,9 +88,9 @@ export function ModuleSidebar({
   );
 }
 
-export function ModuleDetailPanel({ module }: { module: AuditModule }) {
-  const Icon = iconMap[module.icon] || FileText;
-  const scorePercentage = (module.score.value / module.score.maxValue) * 100;
+export function ModuleDetailPanel({ module }: { module: AuditModuleData }) {
+  const Icon = iconMap[module.id] || FileText;
+  const scorePercentage = module.score;
 
   const getSeverityIcon = (severity: string) => {
     switch (severity) {
@@ -108,19 +120,6 @@ export function ModuleDetailPanel({ module }: { module: AuditModule }) {
     }
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case 'positive':
-        return 'bg-green-50 border-green-200';
-      case 'warning':
-        return 'bg-orange-50 border-orange-200';
-      case 'critical':
-        return 'bg-red-50 border-red-200';
-      default:
-        return 'bg-gray-50 border-gray-200';
-    }
-  };
-
   return (
     <div className="flex-1 p-8 overflow-auto">
       {/* Header */}
@@ -131,7 +130,7 @@ export function ModuleDetailPanel({ module }: { module: AuditModule }) {
           </div>
           <div className="flex-1">
             <h1 className="text-2xl font-bold mb-2">{module.name}</h1>
-            <p className="text-muted-foreground">{module.description}</p>
+            <p className="text-muted-foreground">{module.summary}</p>
           </div>
         </div>
 
@@ -139,14 +138,9 @@ export function ModuleDetailPanel({ module }: { module: AuditModule }) {
         <Card className="bg-muted/30">
           <CardContent className="pt-6">
             <div className="flex items-baseline gap-3 mb-3">
-              <div className="text-5xl font-bold">{module.score.value}</div>
-              <div className="text-xl text-muted-foreground">/ {module.score.maxValue}</div>
-              {module.score.trend && (
-                <Badge variant={module.score.trend === 'up' ? 'default' : 'secondary'}>
-                  {module.score.trend === 'up' ? '↑' : module.score.trend === 'down' ? '↓' : '→'} 
-                  {' '}{module.score.changePercentage}%
-                </Badge>
-              )}
+              <div className="text-5xl font-bold">{module.score}</div>
+              <div className="text-xl text-muted-foreground">/ 100</div>
+              <Badge variant="secondary">{module.scoreLabel}</Badge>
             </div>
             <div className="w-full bg-background rounded-full h-3">
               <div 
@@ -162,14 +156,11 @@ export function ModuleDetailPanel({ module }: { module: AuditModule }) {
       {module.insights.length > 0 && (
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Key Insights</h2>
-          <div className="space-y-3">
-            {module.insights.map((insight) => (
-              <Card key={insight.id} className={cn('border-2', getTypeColor(insight.type))}>
-                <CardHeader>
-                  <CardTitle className="text-base">{insight.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{insight.description}</p>
+          <div className="space-y-2">
+            {module.insights.map((insight, idx) => (
+              <Card key={idx} className="border-l-4 border-l-blue-500">
+                <CardContent className="pt-4">
+                  <p className="text-sm">{insight}</p>
                 </CardContent>
               </Card>
             ))}
@@ -184,10 +175,10 @@ export function ModuleDetailPanel({ module }: { module: AuditModule }) {
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Issues & Flags</h2>
           <div className="space-y-4">
-            {module.issues.map((issue) => {
+            {module.issues.map((issue, idx) => {
               const SeverityIcon = getSeverityIcon(issue.severity);
               return (
-                <Card key={issue.id}>
+                <Card key={idx}>
                   <CardHeader>
                     <div className="flex items-start gap-3">
                       <Badge className={getSeverityColor(issue.severity)}>
@@ -197,11 +188,8 @@ export function ModuleDetailPanel({ module }: { module: AuditModule }) {
                       <CardTitle className="text-base flex-1">{issue.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent className="space-y-2">
+                  <CardContent>
                     <p className="text-sm text-muted-foreground">{issue.description}</p>
-                    <div className="bg-muted p-3 rounded text-sm">
-                      <strong>Impact:</strong> {issue.impact}
-                    </div>
                   </CardContent>
                 </Card>
               );
@@ -216,43 +204,17 @@ export function ModuleDetailPanel({ module }: { module: AuditModule }) {
       {module.recommendations.length > 0 && (
         <div>
           <h2 className="text-xl font-semibold mb-4">Recommendations</h2>
-          <div className="space-y-4">
-            {module.recommendations.map((rec) => (
-              <Card key={rec.id} className="border-primary/30">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <CardTitle className="text-base">{rec.title}</CardTitle>
-                    <div className="flex gap-2">
-                      <Badge variant={rec.priority === 'high' ? 'default' : 'secondary'}>
-                        {rec.priority} priority
-                      </Badge>
-                      <Badge variant="outline">{rec.effort} effort</Badge>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-sm text-muted-foreground">{rec.description}</p>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    <div className="bg-green-50 p-3 rounded border border-green-200">
-                      <div className="text-xs font-medium text-green-900 mb-1">Expected Impact</div>
-                      <div className="text-sm text-green-700">{rec.expectedImpact}</div>
-                    </div>
-                    <div className="bg-blue-50 p-3 rounded border border-blue-200">
-                      <div className="text-xs font-medium text-blue-900 mb-1">Implementation Effort</div>
-                      <div className="text-sm text-blue-700 capitalize">{rec.effort}</div>
-                    </div>
-                  </div>
+          <div className="space-y-3">
+            {module.recommendations.map((rec, idx) => (
+              <Card key={idx} className="border-l-4 border-l-green-500">
+                <CardContent className="pt-4">
+                  <p className="text-sm">{rec}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <div className="mt-8 pt-6 border-t text-sm text-muted-foreground">
-        Last updated: {new Date(module.lastUpdated).toLocaleString()}
-      </div>
     </div>
   );
 }

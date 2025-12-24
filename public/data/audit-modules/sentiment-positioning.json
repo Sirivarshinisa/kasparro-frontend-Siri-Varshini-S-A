@@ -1,0 +1,31 @@
+{
+  "id": "sentiment-positioning",
+  "name": "Sentiment & Positioning",
+  "score": 81,
+  "scoreLabel": "Very Good",
+  "summary": "Overall positive sentiment with clear positioning in AI-generated responses.",
+  "insights": [
+    "89% positive sentiment in brand mentions",
+    "Consistently positioned as 'reliable' and 'feature-rich'",
+    "Strong association with technical users",
+    "Minimal negative sentiment detected"
+  ],
+  "issues": [
+    {
+      "severity": "medium",
+      "title": "Unclear differentiation from competitors",
+      "description": "AI models list similar features for you and top 3 competitors"
+    },
+    {
+      "severity": "low",
+      "title": "Occasional 'complex' or 'steep learning curve' mentions",
+      "description": "11% of mentions include difficulty-related qualifiers"
+    }
+  ],
+  "recommendations": [
+    "Clearly articulate unique value propositions in content",
+    "Address complexity concerns with onboarding content",
+    "Highlight distinctive features more prominently",
+    "Gather and showcase user success stories"
+  ]
+}

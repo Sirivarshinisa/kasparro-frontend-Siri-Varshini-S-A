@@ -1,0 +1,36 @@
+{
+  "id": "competitive-context",
+  "name": "Competitive Context",
+  "score": 73,
+  "scoreLabel": "Good",
+  "summary": "Consistently mentioned alongside top competitors, but often not ranked first.",
+  "insights": [
+    "Co-mentioned with top 3 competitors in 87% of responses",
+    "Ranked #1 in 28% of comparison queries",
+    "Strong presence in technical comparison content",
+    "Higher ranking in developer-focused queries"
+  ],
+  "issues": [
+    {
+      "severity": "high",
+      "title": "Competitor A leads in 52% of comparisons",
+      "description": "Primary competitor has stronger positioning in generic queries"
+    },
+    {
+      "severity": "medium",
+      "title": "Missing from 'alternative to' queries",
+      "description": "Not surfaced when users search for alternatives to competitors"
+    },
+    {
+      "severity": "medium",
+      "title": "Weaker presence in enterprise queries",
+      "description": "Competitors dominate large-scale implementation queries"
+    }
+  ],
+  "recommendations": [
+    "Create detailed comparison pages targeting top competitors",
+    "Build 'alternative to [competitor]' landing pages",
+    "Develop enterprise-focused case studies",
+    "Highlight unique features more prominently"
+  ]
+}
