@@ -52,7 +52,7 @@ export function ModuleSidebar({
   onSelectModule: (id: string) => void;
 }) {
   return (
-    <div className="w-80 border-r bg-muted/20 p-4 space-y-2">
+    <div className="w-80 border-r bg-muted/20 p-4 space-y-2 overflow-y-auto" style={{ height: 'inherit' }}>
       <h2 className="font-semibold mb-4 px-3">Audit Modules</h2>
       {modules.map((module) => {
         const Icon = iconMap[module.id] || FileText;
@@ -63,19 +63,24 @@ export function ModuleSidebar({
             key={module.id}
             onClick={() => onSelectModule(module.id)}
             className={cn(
-              'w-full text-left p-3 rounded-lg transition-colors',
+              'w-full text-left p-4 rounded-lg transition-all duration-200 border-2',
               isSelected 
-                ? 'bg-primary text-primary-foreground' 
-                : 'hover:bg-muted'
+                ? 'bg-primary text-primary-foreground border-primary shadow-md scale-[1.02]' 
+                : 'hover:bg-muted border-transparent hover:border-muted-foreground/20 hover:shadow-sm hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.99]'
             )}
           >
             <div className="flex items-start gap-3">
-              <Icon className="h-5 w-5 mt-0.5 flex-shrink-0" />
+              <div className={cn(
+                'p-2 rounded-md',
+                isSelected ? 'bg-primary-foreground/20' : 'bg-muted'
+              )}>
+                <Icon className="h-5 w-5 flex-shrink-0" />
+              </div>
               <div className="flex-1 min-w-0">
-                <div className="font-medium text-sm">{module.name}</div>
+                <div className="font-semibold text-sm mb-1">{module.name}</div>
                 <div className={cn(
-                  'text-xs mt-1',
-                  isSelected ? 'text-primary-foreground/80' : 'text-muted-foreground'
+                  'text-xs',
+                  isSelected ? 'text-primary-foreground/90' : 'text-muted-foreground'
                 )}>
                   Score: {module.score}/100 • {module.scoreLabel}
                 </div>
@@ -121,10 +126,10 @@ export function ModuleDetailPanel({ module }: { module: AuditModuleData }) {
   };
 
   return (
-    <div className="flex-1 p-8 overflow-auto">
+    <div className="flex-1 p-8 overflow-auto animate-in fade-in duration-300">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-start gap-4 mb-4">
+        <div className="flex items-start gap-4 mb-6">
           <div className="p-3 bg-primary/10 rounded-lg">
             <Icon className="h-8 w-8 text-primary" />
           </div>
@@ -135,16 +140,21 @@ export function ModuleDetailPanel({ module }: { module: AuditModuleData }) {
         </div>
 
         {/* Score */}
-        <Card className="bg-muted/30">
-          <CardContent className="pt-6">
-            <div className="flex items-baseline gap-3 mb-3">
-              <div className="text-5xl font-bold">{module.score}</div>
+        <Card className="bg-muted/30 border-2">
+          <CardContent className="px-6 py-6">
+            <div className="flex items-baseline gap-3 mb-4">
+              <div className="text-6xl font-bold">{module.score}</div>
               <div className="text-xl text-muted-foreground">/ 100</div>
-              <Badge variant="secondary">{module.scoreLabel}</Badge>
+              <Badge variant="secondary" className="text-sm px-3 py-1">{module.scoreLabel}</Badge>
             </div>
-            <div className="w-full bg-background rounded-full h-3">
+            <div className="w-full bg-background rounded-full h-4">
               <div 
-                className="bg-primary h-3 rounded-full transition-all" 
+                className={`h-4 rounded-full transition-all ${
+                  module.score >= 80 ? 'bg-green-600' :
+                  module.score >= 65 ? 'bg-blue-600' :
+                  module.score >= 50 ? 'bg-orange-600' :
+                  'bg-red-600'
+                }`}
                 style={{ width: `${scorePercentage}%` }}
               />
             </div>
@@ -156,10 +166,10 @@ export function ModuleDetailPanel({ module }: { module: AuditModuleData }) {
       {module.insights.length > 0 && (
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Key Insights</h2>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {module.insights.map((insight, idx) => (
-              <Card key={idx} className="border-l-4 border-l-blue-500">
-                <CardContent className="pt-4">
+              <Card key={idx} className="border-l-4 border-l-blue-500 px-6 py-4">
+                <CardContent className="p-0">
                   <p className="text-sm">{insight}</p>
                 </CardContent>
               </Card>
@@ -178,8 +188,8 @@ export function ModuleDetailPanel({ module }: { module: AuditModuleData }) {
             {module.issues.map((issue, idx) => {
               const SeverityIcon = getSeverityIcon(issue.severity);
               return (
-                <Card key={idx}>
-                  <CardHeader>
+                <Card key={idx} className="border-l-4 border-l-red-500">
+                  <CardHeader className="px-6 py-4">
                     <div className="flex items-start gap-3">
                       <Badge className={getSeverityColor(issue.severity)}>
                         <SeverityIcon className="h-3 w-3 mr-1" />
@@ -188,7 +198,7 @@ export function ModuleDetailPanel({ module }: { module: AuditModuleData }) {
                       <CardTitle className="text-base flex-1">{issue.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="px-6 pb-4">
                     <p className="text-sm text-muted-foreground">{issue.description}</p>
                   </CardContent>
                 </Card>
@@ -206,8 +216,8 @@ export function ModuleDetailPanel({ module }: { module: AuditModuleData }) {
           <h2 className="text-xl font-semibold mb-4">Recommendations</h2>
           <div className="space-y-3">
             {module.recommendations.map((rec, idx) => (
-              <Card key={idx} className="border-l-4 border-l-green-500">
-                <CardContent className="pt-4">
+              <Card key={idx} className="border-l-4 border-l-green-500 px-6 py-4">
+                <CardContent className="p-0">
                   <p className="text-sm">{rec}</p>
                 </CardContent>
               </Card>

@@ -25,18 +25,22 @@ const differences = [
 
 export function AIvsTraditional() {
   return (
-    <section className="py-16 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="text-3xl font-bold text-center mb-4">
+    <section className="py-20 px-4 bg-gradient-to-br from-primary/10 via-muted/30 to-background animate-in fade-in duration-700">
+      <div className="container mx-auto max-w-[1400px]">
+        <h2 className="text-3xl font-bold text-center mb-4 animate-in fade-in slide-in-from-bottom-3 duration-700">
           Why AI-SEO is Different
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-3 duration-700 delay-150">
           Traditional SEO tactics don't work when AI models generate answers. 
           You need a fundamentally different approach.
         </p>
         <div className="grid gap-4">
-          {differences.map((diff) => (
-            <Card key={diff.aspect} className="p-6">
+          {differences.map((diff, index) => (
+            <Card 
+              key={diff.aspect} 
+              className="p-6 animate-in fade-in slide-in-from-left-3 duration-500"
+              style={{ animationDelay: `${300 + index * 100}ms` }}
+            >
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="font-semibold">{diff.aspect}</div>
                 <div className="text-sm text-muted-foreground">

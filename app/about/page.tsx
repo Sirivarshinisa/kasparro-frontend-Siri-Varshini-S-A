@@ -4,8 +4,8 @@ import { Card } from '@/components/ui/card';
 export default function AboutPage() {
   return (
     <PublicLayout>
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-3xl">
+      <section className="py-20 px-4 bg-gradient-to-br from-background via-muted/20 to-background min-h-screen">
+        <div className="container mx-auto max-w-[1200px]">
           <h1 className="text-4xl font-bold mb-4">About Kasparro</h1>
           <p className="text-xl text-muted-foreground mb-12">
             Building the intelligence layer for AI-first search

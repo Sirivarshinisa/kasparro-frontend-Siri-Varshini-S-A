@@ -2,11 +2,15 @@ import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, ArrowDown } from 'lucide-react';
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import { HelpCircle } from 'lucide-react';
 
 export default function ArchitecturePage() {
   return (
-    <DashboardLayout>
-      <div className="space-y-6">
+    <TooltipProvider>
+      <DashboardLayout>
+      <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
+        <div className="max-w-[1600px] mx-auto px-8 py-8 space-y-8">
         <div>
           <h1 className="text-3xl font-bold">System Architecture</h1>
           <p className="text-muted-foreground">
@@ -21,7 +25,19 @@ export default function ArchitecturePage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Badge className="bg-blue-600">Layer 1</Badge>
-                <CardTitle>InputAssembler</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  InputAssembler
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <HelpCircle className="h-4 w-4" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>Collects raw data from your brand content, competitors, and AI search patterns to begin the analysis process.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </CardTitle>
               </div>
               <CardDescription>
                 Collects and structures raw data from multiple sources
@@ -66,7 +82,19 @@ export default function ArchitecturePage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Badge className="bg-purple-600">Layer 2</Badge>
-                <CardTitle>ContextPack</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  ContextPack
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button className="text-muted-foreground hover:text-foreground transition-colors">
+                        <HelpCircle className="h-4 w-4" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>Transforms raw data into structured format, enriching it with semantic annotations and entity relationships for deeper analysis.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </CardTitle>
               </div>
               <CardDescription>
                 Normalizes and enriches data for comprehensive analysis
@@ -215,7 +243,9 @@ export default function ArchitecturePage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </DashboardLayout>
+    </TooltipProvider>
   );
 }

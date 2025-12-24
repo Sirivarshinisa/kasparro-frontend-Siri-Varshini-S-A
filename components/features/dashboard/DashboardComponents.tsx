@@ -76,26 +76,43 @@ export function SnapshotCard({
     isNegative ? 'text-red-600' :
     'text-muted-foreground';
 
+  const getScoreBadge = () => {
+    if (value >= 80) return { label: 'Excellent', color: 'bg-green-600' };
+    if (value >= 65) return { label: 'Good', color: 'bg-blue-600' };
+    if (value >= 50) return { label: 'Fair', color: 'bg-orange-600' };
+    return { label: 'Needs Work', color: 'bg-red-600' };
+  };
+
+  const scoreBadge = getScoreBadge();
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+    <Card className="hover:shadow-lg transition-all hover:-translate-y-1">
+      <CardHeader className="px-6 py-4">
+        <div className="flex items-center justify-between mb-2">
+          <CardTitle className="text-sm font-medium">{title}</CardTitle>
+          <Badge className={`${scoreBadge.color} text-white`}>{scoreBadge.label}</Badge>
+        </div>
         <CardDescription className="text-xs">{description}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="flex items-baseline gap-2">
-          <div className="text-3xl font-bold">{value}</div>
+      <CardContent className="px-6 pb-4">
+        <div className="flex items-baseline gap-2 mb-3">
+          <div className="text-4xl font-bold">{value}</div>
           <div className="text-sm text-muted-foreground">/ 100</div>
         </div>
-        <div className="flex items-center gap-2 mt-2">
-          <div className="flex-1 bg-muted rounded-full h-2">
+        <div className="flex items-center gap-3 mt-3">
+          <div className="flex-1 bg-muted rounded-full h-2.5">
             <div 
-              className="bg-primary h-2 rounded-full transition-all" 
+              className={`h-2.5 rounded-full transition-all ${
+                value >= 80 ? 'bg-green-600' :
+                value >= 65 ? 'bg-blue-600' :
+                value >= 50 ? 'bg-orange-600' :
+                'bg-red-600'
+              }`}
               style={{ width: `${percentage}%` }}
             />
           </div>
-          <div className={`flex items-center gap-1 text-xs font-medium ${trendColor}`}>
-            <TrendIcon className="h-3 w-3" />
+          <div className={`flex items-center gap-1 text-sm font-semibold ${trendColor}`}>
+            <TrendIcon className="h-4 w-4" />
             {change}
           </div>
         </div>
@@ -120,7 +137,7 @@ export function DashboardMetricsDisplay({ brandId }: { brandId: string }) {
   }
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       <SnapshotCard
         title="AI Visibility Score"
         value={metrics.aiVisibilityScore.value}
