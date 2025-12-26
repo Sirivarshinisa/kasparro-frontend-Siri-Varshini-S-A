@@ -40,9 +40,9 @@ export default function DashboardPage() {
             
             {/* Quick Actions */}
             <div className="grid md:grid-cols-3 gap-6 mt-8">
-              <div className="bg-card rounded-lg border p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+              <div className="bg-card rounded-lg border p-6 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center transition-transform duration-200 hover:scale-110">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
                     <svg className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
@@ -52,9 +52,9 @@ export default function DashboardPage() {
                 <p className="text-sm text-muted-foreground">Deep-dive analysis across all 7 AI-SEO modules</p>
               </div>
 
-              <div className="bg-card rounded-lg border p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+              <div className="bg-card rounded-lg border p-6 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="h-10 w-10 rounded-full bg-blue-500/10 flex items-center justify-center transition-transform duration-200 hover:scale-110">
+                  <div className="h-10 w-10 rounded-full bg-blue-500/10 flex items-center justify-center">
                     <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
@@ -64,9 +64,9 @@ export default function DashboardPage() {
                 <p className="text-sm text-muted-foreground">Track your AI visibility performance over time</p>
               </div>
 
-              <div className="bg-card rounded-lg border p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+              <div className="bg-card rounded-lg border p-6 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="h-10 w-10 rounded-full bg-green-500/10 flex items-center justify-center transition-transform duration-200 hover:scale-110">
+                  <div className="h-10 w-10 rounded-full bg-green-500/10 flex items-center justify-center">
                     <svg className="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>

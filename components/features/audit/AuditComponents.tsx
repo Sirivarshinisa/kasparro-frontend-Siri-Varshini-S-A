@@ -63,10 +63,10 @@ export function ModuleSidebar({
             key={module.id}
             onClick={() => onSelectModule(module.id)}
             className={cn(
-              'w-full text-left p-4 rounded-lg transition-all duration-200 border-2',
+              'w-full text-left p-4 rounded-lg transition-colors border-2',
               isSelected 
-                ? 'bg-primary text-primary-foreground border-primary shadow-md scale-[1.02]' 
-                : 'hover:bg-muted border-transparent hover:border-muted-foreground/20 hover:shadow-sm hover:-translate-y-0.5 hover:scale-[1.01] active:scale-[0.99]'
+                ? 'bg-primary text-primary-foreground border-primary' 
+                : 'hover:bg-muted border-transparent hover:border-muted-foreground/20'
             )}
           >
             <div className="flex items-start gap-3">

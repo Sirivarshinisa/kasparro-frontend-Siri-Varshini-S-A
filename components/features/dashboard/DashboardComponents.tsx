@@ -86,7 +86,7 @@ export function SnapshotCard({
   const scoreBadge = getScoreBadge();
 
   return (
-    <Card className="hover:shadow-lg transition-all hover:-translate-y-1">
+    <Card className="hover:shadow-md transition-shadow">
       <CardHeader className="px-6 py-4">
         <div className="flex items-center justify-between mb-2">
           <CardTitle className="text-sm font-medium">{title}</CardTitle>

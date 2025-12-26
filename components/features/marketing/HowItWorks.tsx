@@ -38,11 +38,10 @@ export function HowItWorks() {
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-center">
               <Card 
-                className="p-6 w-full md:w-60 border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:scale-[1.05] group animate-in fade-in zoom-in-95 duration-500"
-                style={{ animationDelay: `${300 + index * 150}ms` }}
+                className="p-6 w-full md:w-60 border-2 hover:border-primary/50"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                     <span className="text-2xl font-bold text-primary">{step.number}</span>
                   </div>
                   <h3 className="font-semibold text-lg mb-3">{step.title}</h3>

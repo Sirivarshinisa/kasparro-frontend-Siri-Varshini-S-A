@@ -64,7 +64,7 @@ export function ModulesOverview() {
             return (
               <Card 
                 key={module.name} 
-                className="p-6 hover:shadow-lg transition-shadow"
+                className="p-6"
               >
                 <div className="flex items-start gap-4">
                   <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">

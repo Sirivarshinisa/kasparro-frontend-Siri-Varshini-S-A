@@ -1,35 +1,54 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export function Hero() {
   return (
-    <section className="py-24 px-4 bg-gradient-to-br from-primary/5 via-background to-muted/30 relative overflow-hidden animate-in fade-in duration-700">
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      <div className="container mx-auto text-center max-w-5xl relative z-10">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
-          Win the AI-First Search Era
-        </h1>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-          Run a mock AI-SEO audit to see how your brand performs in next-gen AI search.
-        </p>
-        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-          Kasparro is the AI-native SEO & Brand Intelligence platform that helps you dominate 
-          ChatGPT, Gemini, Perplexity, and next-generation search engines.
-        </p>
-        <div className="flex gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-          <Button size="lg" asChild>
-            <Link href="/app/dashboard">
-              Run AI-SEO Audit <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/platform">Learn More</Link>
-          </Button>
+    <section className="py-20 px-4 relative overflow-hidden border-b">
+      <div className="container mx-auto max-w-5xl">
+        <div className="grid md:grid-cols-[1fr,auto] gap-12 items-center">
+          {/* Left: Content */}
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border bg-muted/50 text-sm">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>AI Search Intelligence Platform</span>
+            </div>
+            
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight max-w-xl">
+                Your brand's visibility in
+                <span className="block text-muted-foreground mt-1">AI-generated answers</span>
+              </h1>
+              
+              <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
+                Measure and optimize how ChatGPT, Perplexity, and next-gen search engines cite your content.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button size="lg" asChild className="w-full sm:w-auto">
+                <Link href="/app/dashboard">
+                  Explore Dashboard <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+                <Link href="/platform">Technical Details</Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Right: Stats/Visual Element */}
+          <div className="hidden md:flex flex-col gap-4 min-w-[200px]">
+            <div className="p-6 rounded-lg border bg-card space-y-2">
+              <div className="text-3xl font-bold">7</div>
+              <div className="text-sm text-muted-foreground">Audit modules</div>
+            </div>
+            <div className="p-6 rounded-lg border bg-card space-y-2">
+              <div className="text-3xl font-bold">AI-Native</div>
+              <div className="text-sm text-muted-foreground">Not retrofitted SEO</div>
+            </div>
+          </div>
         </div>
-        <p className="text-sm text-muted-foreground mt-4">
-          Demo audit using mocked data — real insights coming soon.
-        </p>
       </div>
     </section>
   );

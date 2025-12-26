@@ -55,8 +55,7 @@ export function AIvsTraditional() {
             return (
               <Card 
                 key={diff.aspect} 
-                className={`relative overflow-hidden border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 animate-in fade-in zoom-in-95 duration-500 bg-gradient-to-br ${diff.color}`}
-                style={{ animationDelay: `${300 + index * 100}ms` }}
+                className={`relative overflow-hidden border-2 hover:border-primary/30 bg-gradient-to-br ${diff.color}`}
               >
                 {/* Icon badge */}
                 <div className="absolute top-4 right-4">
@@ -104,7 +103,7 @@ export function AIvsTraditional() {
         
         {/* Bottom CTA highlight */}
         <div className="text-center">
-          <Card className="inline-block p-6 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border-primary/30 hover:border-primary/50 transition-colors hover:shadow-lg">
+          <Card className="inline-block p-6 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border-primary/30 hover:border-primary/50 transition-colors">
             <p className="text-sm font-semibold text-primary mb-2">The Bottom Line</p>
             <p className="text-lg font-medium max-w-2xl">
               Kasparro analyzes what AI models actually see, understand, and trust about your brand

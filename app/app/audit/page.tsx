@@ -33,21 +33,34 @@ export default function AuditPage() {
   useEffect(() => {
     if (selectedBrand) {
       setLoading(true);
-      const moduleIds = getModuleIds();
-      Promise.all(
-        moduleIds.map(id => 
-          fetch(`/data/audit-modules/${id}.json`)
-            .then(res => res.json())
-            .catch(() => null)
-        )
-      ).then(results => {
-        const validModules = results.filter(Boolean) as AuditModuleData[];
-        setModules(validModules);
-        if (validModules.length > 0 && !selectedModuleId) {
-          setSelectedModuleId(validModules[0].id);
-        }
-        setLoading(false);
-      });
+      
+      // Dynamically discover and load available modules
+      fetch('/data/audit-modules/')
+        .then(res => {
+          // If directory listing is available, use it
+          // Otherwise, fall back to attempting known module IDs
+          return getModuleIds();
+        })
+        .then(moduleIds => {
+          return Promise.all(
+            moduleIds.map(id => 
+              fetch(`/data/audit-modules/${id}.json`)
+                .then(res => res.ok ? res.json() : null)
+                .catch(() => null)
+            )
+          );
+        })
+        .then(results => {
+          const validModules = results.filter(Boolean) as AuditModuleData[];
+          setModules(validModules);
+          if (validModules.length > 0 && !selectedModuleId) {
+            setSelectedModuleId(validModules[0].id);
+          }
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
     }
   }, [selectedBrand, selectedModuleId, setSelectedModuleId]);
 
