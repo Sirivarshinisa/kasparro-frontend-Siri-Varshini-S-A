@@ -49,30 +49,30 @@ const modules = [
 
 export function ModulesOverview() {
   return (
-    <section className="py-20 px-4 bg-muted/10">
+    <section className="py-12 sm:py-16 md:py-20 px-4 bg-muted/10">
       <div className="container mx-auto max-w-7xl">
-        <h2 className="text-3xl font-bold text-center mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 sm:mb-4 px-4">
           7 Core Audit Modules
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-sm sm:text-base text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
           Kasparro analyzes your brand through seven critical dimensions that determine 
           AI visibility and trustworthiness.
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {modules.map((module, index) => {
             const Icon = module.icon;
             return (
               <Card 
                 key={module.name} 
-                className="p-6"
+                className="p-4 sm:p-6"
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
-                    <Icon className="h-6 w-6 text-primary" />
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">{module.name}</h3>
-                    <p className="text-sm text-muted-foreground">{module.description}</p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-sm sm:text-base mb-2 break-words">{module.name}</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{module.description}</p>
                   </div>
                 </div>
               </Card>

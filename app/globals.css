@@ -122,6 +122,22 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Mobile-first responsive typography */
+  html {
+    font-size: 16px;
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  /* Better tap targets for mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 @layer utilities {
@@ -135,5 +151,33 @@
   .bg-dot-pattern {
     background-image: radial-gradient(circle, hsl(var(--muted-foreground) / 0.15) 1px, transparent 1px);
     background-size: 20px 20px;
+  }
+  
+  /* Mobile-first container utilities */
+  .container-mobile {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Responsive text utilities */
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  .heading-responsive {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  /* Safe area utilities for notched devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Touch-friendly spacing */
+  .touch-spacing {
+    @apply gap-3 sm:gap-4 md:gap-6;
   }
 }
